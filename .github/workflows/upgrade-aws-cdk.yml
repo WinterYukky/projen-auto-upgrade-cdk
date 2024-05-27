@@ -19,6 +19,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Synth project
+        env:
+          CI: "false"
         run: yarn projen
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6

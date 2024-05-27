@@ -43,6 +43,9 @@ workflow.addJob('create-pr', {
     {
       name: 'Synth project',
       run: 'yarn projen',
+      env: {
+        CI: 'false',
+      },
     },
     {
       name: 'Create Pull Request',
