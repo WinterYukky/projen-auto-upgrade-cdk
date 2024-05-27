@@ -40,7 +40,7 @@ workflow.addJob('create-pr', {
     },
     {
       name: 'Write latest AWS CDK version to cdk-version.txt',
-      run: `sed -i "s/cdkVersion\s=\s'[0-9|\.]*'/cdkVersion = '\${{ env.aws_cdk_version }}'/" .projenrc.ts`,
+      run: `sed -i "s/cdkVersion\\s=\\s'[0-9|\\.]*'/cdkVersion = '\${{ env.aws_cdk_version }}'/" .projenrc.ts`,
     },
     {
       name: 'Synth project',
