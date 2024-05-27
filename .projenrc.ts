@@ -38,7 +38,7 @@ workflow.addJob('create-pr', {
     },
     {
       name: 'Install dependencies',
-      run: 'yarn install --check-files',
+      run: 'yarn install',
     },
     {
       name: 'Synth project',

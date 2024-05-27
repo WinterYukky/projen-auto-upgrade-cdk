@@ -17,7 +17,7 @@ jobs:
       - name: Write latest AWS CDK version to cdk-version.txt
         run: echo ${{ env.aws_cdk_version }} > ./cdk-version.txt
       - name: Install dependencies
-        run: yarn install --check-files
+        run: yarn install
       - name: Synth project
         run: yarn projen
       - name: Create Pull Request
