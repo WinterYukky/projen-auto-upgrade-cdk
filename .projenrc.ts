@@ -22,7 +22,10 @@ workflow.on({
   workflowDispatch: {},
 });
 workflow.addJob('create-pr', {
-  permissions: { contents: JobPermission.READ },
+  permissions: {
+    contents: JobPermission.READ,
+    pullRequests: JobPermission.WRITE,
+  },
   runsOn: ['ubuntu-latest'],
   steps: [
     {
