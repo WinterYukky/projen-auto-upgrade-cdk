@@ -1,5 +1,5 @@
 {
-  "name": "projen-auto-update-cdk",
+  "name": "projen-auto-upgrade-cdk",
   "scripts": {
     "build": "npx projen build",
     "bundle": "npx projen bundle",
