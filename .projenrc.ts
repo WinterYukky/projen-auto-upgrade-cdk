@@ -23,6 +23,7 @@ workflow.on({
 });
 workflow.addJob('create-pr', {
   permissions: { contents: JobPermission.WRITE },
+  runsOn: ['ubuntu-latest'],
   steps: [
     {
       uses: 'actions/checkout@v4',
