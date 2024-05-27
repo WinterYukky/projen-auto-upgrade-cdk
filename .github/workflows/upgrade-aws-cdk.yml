@@ -9,7 +9,7 @@ jobs:
   create-pr:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Get latest AWS CDK version
