@@ -1,8 +1,7 @@
-import { readFileSync } from 'fs';
 import { awscdk } from 'projen';
 import { JobPermission } from 'projen/lib/github/workflows-model';
 
-const cdkVersion = readFileSync('cdk-version.txt').toString().trim();
+const cdkVersion = '2.1.0';
 const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion,
   defaultReleaseBranch: 'main',
@@ -32,23 +31,21 @@ workflow.addJob('create-pr', {
       uses: 'actions/checkout@v4',
     },
     {
+      name: 'Install dependencies',
+      run: 'yarn install',
+    },
+    {
       name: 'Get latest AWS CDK version',
       run: "echo aws_cdk_version=`curl -s https://api.github.com/repos/aws/aws-cdk/releases/latest  | jq -r .tag_name | sed 's/v//'` >> $GITHUB_ENV",
     },
     {
       name: 'Write latest AWS CDK version to cdk-version.txt',
-      run: 'echo ${{ env.aws_cdk_version }} > ./cdk-version.txt',
-    },
-    {
-      name: 'Install dependencies',
-      run: 'yarn install',
+      run: `sed -i "s/cdkVersion\s=\s'[0-9|\.]*'/cdkVersion = '\${AWS_CDK_VERSION}'/" .projenrc.ts`,
     },
     {
       name: 'Synth project',
       run: 'yarn projen',
-      env: {
-        CI: 'false',
-      },
+      env: { CI: 'false' },
     },
     {
       name: 'Create Pull Request',
