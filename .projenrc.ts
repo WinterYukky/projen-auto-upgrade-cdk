@@ -1,7 +1,7 @@
 import { awscdk } from 'projen';
 import { JobPermission } from 'projen/lib/github/workflows-model';
 
-const cdkVersion = '2.1.0';
+const cdkVersion = '2.147.3';
 const project = new awscdk.AwsCdkTypeScriptApp({
   cdkVersion,
   defaultReleaseBranch: 'main',
